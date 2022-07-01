@@ -6,10 +6,15 @@ require("dotenv").config();
 app.use(express.json());
 
 const connection = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    password: process.env.DBPASSWORD,
+    database: process.env.DBDATABASE,
+});
+
+connection.connect((err) => {
+    if(err) throw err;
+    console.log("Conectado a la base de datos");
 });
 
 app.get("/", (req, res) => {

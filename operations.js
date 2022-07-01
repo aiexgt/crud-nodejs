@@ -6,6 +6,7 @@ function insert(connection, data, callback){
     connection.query(query, function(err, result){
         if(err) throw err;
         callback(result);
+        connection.end();
     });
 }
 
@@ -13,6 +14,7 @@ function read(connection, callback){
     connection.query(`SELECT * FROM personas`, function(err, result){
         if(err) throw err;
         callback(result);
+        connection.end();
     });
 }
 
@@ -22,6 +24,7 @@ function update(connection, data, callback){
     connection.query(query, function(err, result){
         if(err) throw err;
         callback(result);
+        connection.end();
     });
 }
 
@@ -31,6 +34,7 @@ function remove(connection, data, callback){
     connection.query(query, function(err, result){
         if(err) throw err;
         callback(result);
+        connection.end();
     });
 }
 

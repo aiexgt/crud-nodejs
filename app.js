@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/insert", (req, res) => {
-    insert(connection, { primerNombre: "Juancho", primerApellido: "Robles" }, 
+    insert(connection, { primerNombre: "El bicho", primerApellido: "Siuuuu" }, 
     (result) => {
         res.json(result);
     });

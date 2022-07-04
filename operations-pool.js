@@ -27,6 +27,19 @@ function readPool(pool, callback) {
   });
 }
 
+function searchPool(pool, data, callback) {
+    let searchQuery = 'SELECT * FROM personas WHERE id = ?';
+    let query = mysql.format(searchQuery, data.id);
+    pool.getConnection(function (err, connection){
+        if(err) throw err;
+        connection.query(query,function(err, result){
+            if(err) throw err;
+            callback(result);
+            connection.release();
+        })
+    })
+}
+
 function updatePool(pool, data, callback) {
   let updateQuery = `UPDATE personas SET primerNombre = ?, primerApellido = ? WHERE id = ?`;
   let query = mysql.format(updateQuery, [
@@ -57,4 +70,4 @@ function removePool(pool, data, callback) {
   });
 }
 
-module.exports = { insertPool, readPool, updatePool, removePool };
+module.exports = { insertPool, readPool, updatePool, removePool, searchPool };

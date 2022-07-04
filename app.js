@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const { insert, read, update, remove } = require("./operations");
 
-const { insertPool, readPool, updatePool, removePool } = require("./operations-pool");
+const { insertPool, readPool, updatePool, removePool, searchPool } = require("./operations-pool");
 
 app.use(express.json());
 
@@ -40,7 +40,7 @@ app.get("/insert", (req, res) => {
 });
 
 app.get("/insert-pool", (req, res) => {
-    insertPool(pool, { primerNombre: "Lionel", primerApellido: "Messi" }, 
+    insertPool(pool, { primerNombre: "Caga", primerApellido: "Dales" }, 
     (result) => {
         res.json(result);
     });
@@ -56,7 +56,15 @@ app.get("/read-pool", (req, res) => {
     readPool(pool, (result) => {
         res.json(result);
     })
-})
+});
+
+app.get("/search-pool", (req, res) => {
+    searchPool(pool, {
+        id: 1
+    }, (result) => {
+        res.json(result);
+    })
+});
 
 app.get("/update", (req, res) => {
     update(connection, { primerNombre: "Juana", primerApellido: "Cubana", id: 1 }, 

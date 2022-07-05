@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 function insertPool(pool, data, callback) {
   let insertQuery = `INSERT INTO personas (primerNombre, primerApellido) VALUES (?,?)`;
-  let query = mysql.format(insertQuery, [
+  let query = mysql.format(insertQuery,[
     data.primerNombre,
     data.primerApellido,
   ]);
